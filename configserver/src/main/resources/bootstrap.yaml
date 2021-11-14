@@ -1,0 +1,25 @@
+server:
+  port: ${SERVER_PORT:8888}
+spring:
+  application:
+    name: configserver
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: file:${PROPERTIES_PATH:/opt/properties}
+  profiles:
+    include: native
+
+management:
+  endpoint:
+    health:
+      enabled: true
+  endpoints:
+    enabled-by-default: false
+    jmx:
+      exposure:
+        exclude: "*"
+    web:
+      exposure:
+        include: health
